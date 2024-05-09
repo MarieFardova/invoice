@@ -1,15 +1,36 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+package com.engeto.invoice;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+public class Main {
+
+    public static void main(String[] args) {
+        String item = "Trekové boty Sedmimílovky";
+        int quantity = 2;
+        double weight = 0.45;
+        BigDecimal pricePerPiece = BigDecimal.valueOf(1990);
+        LocalDate dateOfIssue = LocalDate.of(2022,4,7);
+        boolean isDiscounted = true;
+
+        double totalWeight = quantity * weight;
+        System.out.println("Celková hmotnost zásilky: "+ totalWeight + " kg");
+
+        BigDecimal totalPrice =
+                  pricePerPiece.multiply(BigDecimal.valueOf(quantity));
+        totalPrice = totalPrice.add(BigDecimal.valueOf(45));//k celkové ceně přičteme cenu dopravy
+        System.out.println("Celková cena zásilky: "+ totalPrice+ " Kč");
     }
+
 }
+
+
+/*POZNÁMKY:
+název zboží (item),= String
+počet kusů (quantity),= int
+hmotnost jednoho kusu (weight),= double
+a cenu jednoho kusu (price per piece),= BigDecimal
+datum vystavení faktury (date),= LocalDate
+jestli má zákazníky nárok na slevu (is discounted).= boolean*/
